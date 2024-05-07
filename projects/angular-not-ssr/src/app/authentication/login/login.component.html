@@ -1,0 +1,55 @@
+<div class="container-fluid h-100 ">
+    <div class="row h-100  d-flex justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4">
+            <mat-card>
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title></mat-card-title>
+                    <mat-card-subtitle></mat-card-subtitle>
+                  </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="loginform-container">
+                        <h3 class="text-center ">Login</h3>
+                        <form [formGroup]="loginForm">
+                            <mat-form-field>
+                                <mat-label>Enter your email</mat-label>
+                                <input matInput
+                                        placeholder="email@example.com"
+                                        formControlName="email">
+                                @if (loginForm.controls.email.hasError('required')) {
+                                    <mat-error>You must enter a value</mat-error>
+                                }
+                                @if (loginForm.controls.email.hasError('email')) {
+                                    <mat-error>You must enter a email format</mat-error>
+                                }
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Enter your password</mat-label>
+                                <input matInput 
+                                        [type]="hidePassword ? 'password' : 'text'"
+                                        formControlName="password">
+                                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                                  <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                @if (loginForm.controls.password.hasError('required')) {
+                                    <mat-error>You must enter a value</mat-error>
+                                }
+                            </mat-form-field>
+                            <mat-checkbox formControlName="remember">remember me</mat-checkbox>
+                            <div class="w-100 d-flex justify-content-center mb-3 ">
+                                <button mat-flat-button class="me-3" (click)="submitLoginForm()" 
+                                >Submit</button>
+                                <button mat-raised-button color="accent">Register</button>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="w-100 d-flex  justify-content-end ">
+                                <button mat-button>Forgot your password?</button>
+                            </div>
+                        </form>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
